@@ -88,7 +88,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     setAcceptDrops(true);
 
     setObjectName("bankNotes");
-    setStyleSheet("#bankNotes { background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #292E33, stop:1.0 #22262A); } QToolTip { color: #ffffff; background-color: #646464; border-width: 1px;border-color:#424242;}");
+    setStyleSheet("#bankNotes { background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #292E33, stop:1.0 #22262A); } QToolTip { color: #ffffff; background-color: #646464; border:0px;}");
 
     // Create actions for the toolbar, menu bar and tray/dock icon
     createActions();
@@ -104,6 +104,8 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
 
     // Create tabs
     overviewPage = new OverviewPage();
+    overviewPage->setObjectName("OverviewPage");
+    overviewPage->setStyleSheet("#OverviewPage QToolTip { color: #ffffff; background-color: #646464; border:0px;}");
 
     transactionsPage = new QWidget(this);
     QVBoxLayout *vbox = new QVBoxLayout();
@@ -151,6 +153,8 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     frameBlocksLayout->addWidget(labelBlocksIcon);
     frameBlocksLayout->addStretch();
 
+    labelMintingIcon->setObjectName("labelMintingIcon");
+    labelMintingIcon->setStyleSheet("#labelMintingIcon QToolTip { color: #ffffff; background-color: #646464;border:0px;}");
     labelEncryptionIcon->setObjectName("labelEncryptionIcon");
     labelConnectionsIcon->setObjectName("labelConnectionsIcon");
     labelBlocksIcon->setObjectName("labelBlocksIcon");
