@@ -88,7 +88,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     setAcceptDrops(true);
 
     setObjectName("bankNotes");
-    setStyleSheet("#bankNotes { background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #292E33, stop:1.0 #22262A); }");
+    setStyleSheet("#bankNotes { background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #292E33, stop:1.0 #22262A); } QToolTip { color: #ffffff; background-color: #646464; border-width: 1px;border-color:#424242;}");
 
     // Create actions for the toolbar, menu bar and tray/dock icon
     createActions();
@@ -151,6 +151,13 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     frameBlocksLayout->addWidget(labelBlocksIcon);
     frameBlocksLayout->addStretch();
 
+    labelEncryptionIcon->setObjectName("labelEncryptionIcon");
+    labelConnectionsIcon->setObjectName("labelConnectionsIcon");
+    labelBlocksIcon->setObjectName("labelBlocksIcon");
+    labelEncryptionIcon->setStyleSheet("#labelEncryptionIcon QToolTip {color:#ffffff;background-color:#646464;border:0px;}");
+    labelConnectionsIcon->setStyleSheet("#labelConnectionsIcon QToolTip {color:#ffffff;background-color:#646464;border:0px;}");
+    labelBlocksIcon->setStyleSheet("#labelBlocksIcon QToolTip {color:#ffffff;background-color:#646464;border:0px;}");
+
     // Set minting pixmap
     labelMintingIcon->setPixmap(QIcon(":/icons/minting").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
     labelMintingIcon->setEnabled(false);
@@ -184,6 +191,9 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     statusBar()->addWidget(progressBarLabel);
     statusBar()->addWidget(progressBar);
     statusBar()->addPermanentWidget(frameBlocks);
+
+    statusBar()->setObjectName("bankNoteStatusBar");
+    statusBar()->setStyleSheet("#bankNoteStatusBar { border-top-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4B4F52, stop:0.5 #8B8F92, stop:1.0 #8B8F92); border-top-width: 2px; border-top-style: inset; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #868686, stop:0.5 #222222, stop:1.0 #111111); color: #ffffff; } QToolTip { color: #ffffff; background-color: #646464; border-width: 1px;border-color:#424242;}");
 
     syncIconMovie = new QMovie(":/movies/update_spinner", "mng", this);
     // this->setStyleSheet("background-color: #effbef;");
@@ -353,6 +363,11 @@ void BitcoinGUI::createToolBars()
     toolbar2->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     toolbar2->addAction(lockWalletToggleAction);
     toolbar2->addAction(exportAction);
+
+    toolbar->setObjectName("tabsToolbar");
+    toolbar2->setObjectName("actionsToolbar");
+    toolbar->setStyleSheet("QToolButton { min-height:48px;color:#ffffff;border:none;margin:0px;padding:0px;} QToolButton:hover { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #7D7E7F, stop:1.0 #6D6F70); margin:0px; padding:0px; border:none; } QToolButton:checked { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #363637, stop:1.0 #242425); margin:0px; padding:0px; border-right-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #2a2a2a, stop:0.5 #5b5b5e, stop:1.0 #5b5b5e);border-right-width:2px;border-right-style:inset; border-left-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5b5b5e, stop:0.5 #5b5b5e, stop:1.0 #2a2a2a);border-left-width:2px;border-left-style:inset; } QToolButton:pressed { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #363637, stop:1.0 #242425); margin:0px; padding:0px; border:none;} QToolButton:selected { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #363637, stop:1.0 #242425); margin:0px;padding:0px;border:none; } #tabsToolbar { min-height:48px; color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #5D5D60, stop:1.0 #3D3D3F); margin:0px; padding:0px; border-top-color: rgba(160, 160, 160, 191); border-top-width: 1px; border-top-style: inset; } QToolBar::handle { background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #5D5D60, stop:1.0 #3D3D3F); }");
+    toolbar2->setStyleSheet("QToolButton { min-height:48px;color:#ffffff; border:none;margin:0px;padding:0px;} QToolButton::disabled { color: #808080; } QToolButton:hover { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #7D7E7F, stop:1.0 #6D6F70); margin:0px; padding:0px; border:none; } QToolButton:checked { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #363637, stop:1.0 #242425); margin:0px; padding:0px; border-right-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #2a2a2a, stop:0.5 #5b5b5e, stop:1.0 #5b5b5e);border-right-width:2px;border-right-style:inset; border-left-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5b5b5e, stop:0.5 #5b5b5e, stop:1.0 #2a2a2a);border-left-width:2px;border-left-style:inset; } QToolButton:pressed { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #363637, stop:1.0 #242425); margin:0px; padding:0px; border:none; border-left-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5b5b5e, stop:0.5 #5b5b5e, stop:1.0 #2a2a2a);border-left-width:2px;border-left-style:inset;} QToolButton:selected { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #363637, stop:1.0 #242425); margin:0px;padding:0px;border:none; } #actionsToolbar { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #5D5D60, stop:1.0 #3D3D3F); margin:0px; padding:0px; border-top-color: rgba(160, 160, 160, 191); border-top-width: 1px; border-top-style: inset; } QToolBar::handle { background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #5D5D60, stop:1.0 #3D3D3F); }");
 }
 
 void BitcoinGUI::setClientModel(ClientModel *clientModel)
