@@ -1,0 +1,9 @@
+Building BankNote
+
+See doc/readme-qt.rst for instructions on building BankNote QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of BankNote.
+
+See doc/build-*.txt for instructions on building BankNoted,
+the intended-for-services, no-graphical-interface, reference
+implementation of BankNote.
